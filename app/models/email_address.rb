@@ -1,9 +1,14 @@
+
+require 'uri'
+
 class EmailAddress < ApplicationRecord
   has_many :email_verifications
   before_create :set_verification_status
 
+    
   def check_status
-    'valid'
+    self.address.match(URI::MailTo::EMAIL_REGEXP) ? "valid" : "invalid"
+    
   end
 
   private

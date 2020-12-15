@@ -11,6 +11,14 @@ We're very excited to see what you create. If at any point, you have questions o
 This repo comes complete with a dockererized rails api--with a few bugs. It is your job to clone this repo, build the docker image, and find the bugs. In the below sections are an itemized list of tasks we'd like you to complete before submitting the challenge. Additionally, if you find that too easy and are looking for an extra challenge, we encourage you to try out the bonus tasks! They are, of course, in no way required and will not reflect against you.
 
 
+
+## Overall Challenge:
+A lot of my time was spent on what surrounded the code. I learned how to set up a docker container and understand the logs, set up a ruby environment, basic ruby syntax (since this was my first time with it) ,and setting up postgres. 
+
+# Lost some time in task 1 as I wanted to prevent an invalid email from being created in the DB, not just have an invalid value for the verification_status key… Was a bit of a tough point viewing the data passing between controller and model in the console- tried using the docker logger at one point for this. 
+# I’m familiar with the MVC structure- but jumping into ruby was a bit of an obstacle, lost time and pseudocode the remaining tasks. That said if I had the ruby foundation this would be complete...
+
+
 ## The Solution
 
 Given this clone repo, we ask that you push into your own github account. Then create a PR with all of the changes you made so it is easy for us to see the work you've put into this challenge. Feel free to document any changes via comments, writing your own README, etc.
@@ -132,6 +140,7 @@ Turns out our API is open to the public! Let's lock this down following these re
 
 - allow only _active_ users in the database to have access to the API (remember that users in the database can be active or inactive)
 - only existing users can gain access to the API
+ # I think there should be a method running that will check the status of current user. if inactive, return, otherwise continue to verification method. a current user object should be created anyways for future functionality and should be globally accessible to all controllers once a user is signed into our application, then we can set permissions, or refference the object to grant access to specific features before executing methods in those files..
 
 Again, let your creativity flourish. Be sure to document the new API call in your README updates--we love examples!
 
@@ -145,6 +154,9 @@ Let's give this API a UI! Add a basic form for verifying an email address to the
 The below are listed in no particular order, complete as few or as many as you'd like.
 
 - Due to security and privacy concerns, we do not want to store raw emails in our database. Implement a way to store results, but also not expose raw emails in the database.
+# I think here, some cool regex could be implemented, which can consistently replace soem characters and letters to almost "sanitize the data", then whne we are making get requests the same could be performed to retreive the data and restore it..
 - Allow a CSV upload feature in the UI that can verify up to 100 emails (modify the Bulk API to handle a larger load).
+# while iterating through the content of the CSV, could be useful to implement stack datastructure in this case... depending on format of CSV
+# if there are characters consistently marking the start and beginning of an entry, could append a start extract the data to an array, pop the start when an end is found, and continue through the entire file. Once complete, push the array to the verification method and operate on each email, return true or false or 'valid' or 'invalid' for statuses of each..
 - Create a Postman collection to test a valid and invalid endpoint.
 - Write rspec tests for the new logic you've implemented in the models and controllers.
